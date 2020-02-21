@@ -356,7 +356,7 @@ Species
 * Barbed Cocks
 ? Expresses an interest in penises with barbed heads; typically feline.
 * Chubby
-? Expresses an interest in characters that are well-rounded, full in form, and pudgy, but not fat.
+? Expresses an interest in characters that are well-rounded, full in form, and pudgy.
 * Cubs / Young Characters
 ? A situation in which at least one character will be underage, typically younger than 15.
 * Cut Cocks
@@ -756,10 +756,8 @@ Species
 (General)
 * Adultery/Cuckolding
 ? Refers to the act of a character who, within the confines of the RP world has been designated to be in a relationship, will have sexual interaction with a character other than the one who has been predetermined to be in a relationship, in the context of the RP.
-* Ageplay
-? Refers to scenes in which one or both players portrays a significantly underage character, possibly including sexual interactions.
-* Babyfur
-? Engaging in an RP in which at least one adult character will take on the characteristics of an exceptionally young cub; typically implies diaper wearing and/or diaper usage.
+* Age Gap
+? Refers to scenes in which there is a signifigant gap in the ages of characters.
 * Babysitter
 ? A situation in which one character will either be or roleplay as another character's babysitter.
 * Bimbofication
