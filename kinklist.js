@@ -245,7 +245,7 @@ $(function(){
 
             context.font = "bold 24px Arial";
             context.fillStyle = '#000000';
-            context.fillText('Kinklist ' + username, 5, 25);
+            context.fillText('Kinklist 1.1 ' + username, 5, 25);
 
             inputKinks.drawLegend(context);
             return { context: context, canvas: canvas };
