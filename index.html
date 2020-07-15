@@ -336,5 +336,49 @@
 		<div id="DescriptionOverlay" class="overlay">
 			<div id="Description"></div>
 		</div>
+	    <style>
+	    	.modalzzz {
+			display: block;
+			position: fixed;
+			z-index: 200;
+			padding-top: 100px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgb(0,0,0);
+			background-color: rgba(0,0,0,0.4);
+		}
+		.modal-contentzzz {
+			background-color: #fefefe;
+			margin: auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+		}
+		.closezzz {
+			color: #aaaaaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}		
+		.closezzz:hover, .closezzz:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
+	<div id="useNewkList" class="modalzzz">			
+		<div class="modal-contentzzz">
+			<span class="closezzz" onclick="document.getElementById('useNewkList').style.display=''">&times;</span>
+			<p>
+				<a href="https://playfullybad.github.io/Survey/">Please check out the new version here</a> [ <a href="https://playfullybad.github.io/Survey/">https://playfullybad.github.io/Survey/</a> ]
+			</p>
+			<p>
+				or close this box to continue with old version
+			</p>
+		</div>
+	</div>
     </body>
 </html>
