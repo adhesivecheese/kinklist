@@ -93,6 +93,11 @@ td + td { border-left-style:none }
 	height:36px
 }
 
+#DownloadWrapper {
+	width:460px;
+	height:36px
+}
+
 #URL {
 	display:none;
 	position:absolute;
@@ -126,6 +131,24 @@ td + td { border-left-style:none }
 }
 
 #Export:hover { opacity:.85 }
+
+#Download {
+	position:absolute;
+	left:150px;
+	box-sizing:border-box;
+	color:#FFF;
+	text-transform:uppercase;
+	background-color:#4980ae;
+	font-size:18px;
+	width:150px;
+	height:36px;
+	border-style:none;
+	border-radius:4px;
+	cursor:pointer;
+	transition:all .3s ease-in-out
+}
+
+#Download:hover { opacity:.85 }
 
 #Loading {
 	display:none;
@@ -169,6 +192,12 @@ td + td { border-left-style:none }
 		right:46px
 	}
 
+	#DownloadWrapper {
+		position:absolute;
+		top:-3px;
+		right:46px
+	}
+
 	h1 { margin-bottom:0 }
 }
 
@@ -183,6 +212,12 @@ td + td { border-left-style:none }
 		top:-3px;
 		right:46px
 	}
+
+	#DownloadWrapper {
+		position:absolute;
+		top:-3px;
+		right:46px
+	}
 }
 
 @media (max-width: 800px) and (min-width: 598px) {
@@ -193,6 +228,12 @@ td + td { border-left-style:none }
 	}
 
 	#ExportWrapper {
+		position:relative;
+		margin-top:10px;
+		margin-left:5px
+	}
+
+	#DownloadWrapper {
 		position:relative;
 		margin-top:10px;
 		margin-left:5px
@@ -227,13 +268,21 @@ td + td { border-left-style:none }
 		width:345px
 	}
 
+	#DownloadWrapper {
+		position:relative;
+		margin-top:10px;
+		margin-left:0;
+		width:345px
+	}
+
 	#URL {
 		left:155px;
 		width:190px;
 		font-size:10px
 	}
 
-	#Export { left:0 }
+	#Export { left:100 }
+	#Download { left:0 }
 
 	#Loading { left:230px }
 }
@@ -245,6 +294,13 @@ td + td { border-left-style:none }
 }
 
 #ExportWrapper :last-child:after {
+	content:'';
+	display:block;
+	clear:both
+}
+
+
+#DownloadWrapper {
 	content:'';
 	display:block;
 	clear:both

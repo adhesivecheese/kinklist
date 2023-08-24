@@ -175,6 +175,7 @@ $(function(){
 
             // Make export button work
             $('#Export').on('click', inputKinks.export);
+            $('#Download').on('click', inputKinks.download);
             $('#URL').on('click', function(){ this.select(); });
 
             // On resize, redo columns
@@ -293,14 +294,7 @@ $(function(){
 
             }
         },
-        export: function(){
-            var username = prompt("Please enter your name");
-            if(typeof username !== 'string') return;
-            else if (username.length ) username = '(' + username + ')';
-
-            $('#Loading').fadeIn();
-            $('#URL').fadeOut();
-
+        createExportCanvas: function(username){
             // Constants
             var numCols = 6;
             var columnWidth = 250;
@@ -417,6 +411,38 @@ $(function(){
                     inputKinks.drawCallHandlers[drawCall.type](context, drawCall);
                 }
             }
+
+            return canvas;
+        },
+        download: function(){
+            var username = prompt("Download: Please enter your name");
+            if(typeof username !== 'string') return;
+
+            $('#Loading').fadeIn();
+            $('#URL').fadeOut();
+
+            canvas = inputKinks.createExportCanvas('(' + username + ')');
+
+            $('#Loading').hide();
+
+            $('#Download').download = username+'_kinklist.png';
+
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            document.body.appendChild(link)
+            link.setAttribute('download', username + '_kinklist.png');
+            link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+            link.click();
+        },
+        export: function(){
+            var username = prompt("Please enter your name");
+            if(typeof username !== 'string') return;
+            else if (username.length ) username = '(' + username + ')';
+
+            $('#Loading').fadeIn();
+            $('#URL').fadeOut();
+
+            canvas = inputKinks.createExportCanvas(username);
 
             // Send canvas to imgbb
             const formData = new FormData();
