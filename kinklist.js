@@ -35,11 +35,10 @@ var colors = {}
 var level = {};
 
 
-var test = ""
 
 $(function(){
 
-
+    var imgurClientId = '9db53e5936cd02f';
 
     $("#listType").change(function() {
         fileToRead = $("#listType").val() + '.txt';
@@ -418,22 +417,32 @@ $(function(){
                 }
             }
 
-            // Send canvas to imgbb
-            const formData = new FormData();
-            formData.append("image", canvas.toDataURL().split(',')[1])
-            var req = new XMLHttpRequest()
-            req.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    response = JSON.parse(this.response)
-                    console.log(response)
-                    url = response.data.image.url
-                    $('#Loading').hide();
-                    $('#URL').val(url).fadeIn();
-                }
-            }
-            req.open("POST", 'https://api.imgbb.com/1/upload?key=377713d32db3da271fcf40791d172742', true)
-            req.send(formData)
+            //return $(canvas).insertBefore($('#InputList'));
 
+            // Send canvas to imgur
+            $.ajax({
+                url: 'https://api.imgur.com/3/image',
+                type: 'POST',
+                headers: {
+                    // Your application gets an imgurClientId from Imgur
+                    Authorization: 'Client-ID ' + imgurClientId,
+                    Accept: 'application/json'
+                },
+                data: {
+                    // convert the image data to base64
+                    image:  canvas.toDataURL().split(',')[1],
+                    type: 'base64'
+                },
+                success: function(result) {
+                    $('#Loading').hide();
+                    var url = 'https://i.imgur.com/' + result.data.id + '.png';
+                    $('#URL').val(url).fadeIn();
+                },
+                fail: function(){
+                    $('#Loading').hide();
+                    alert('Failed to upload to imgur, could not connect');
+                }
+            });
         },
         encode: function(base, input){
             var hashBase = inputKinks.hashChars.length;
