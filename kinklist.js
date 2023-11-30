@@ -33,6 +33,11 @@ var kinks = {};
 var inputKinks = {}
 var colors = {}
 var level = {};
+let kinkSizes = {
+    "209": "classic",
+    "285": "detailed",
+    "589": "plsno",
+}
 
 
 
@@ -533,6 +538,11 @@ $(function(){
 
             var values = inputKinks.decode(Object.keys(colors).length, hash);
             var valueIndex = 0;
+            // select correct kink list
+            const kinkListHashOption = kinkSizes[values.length.toString()]
+            if (kinkListHashOption !== undefined) {
+                $('#listType')[0].value = kinkListHashOption;
+            }
             $('#InputList .choices').each(function(){
                 var $this = $(this);
                 var value = values[valueIndex++];
