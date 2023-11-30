@@ -45,18 +45,20 @@ $(function(){
 
     var imgurClientId = '9db53e5936cd02f';
 
-    $("#listType").change(function() {
-        fileToRead = $("#listType").val() + '.txt';
-        $.get(fileToRead, function(data) {
-            $('#Kinks').text(data);
-            var selection = inputKinks.saveSelection();
-            var kinksText = $('#Kinks').val();
+    async function updateKinkList() {
+        const fileToRead = $("#listType").val() + '.txt';
+        await $.get(fileToRead, function (data) {
+            let kinkSelector = $('#Kinks');
+            kinkSelector.text(data);
+            inputKinks.saveSelection();
+            let kinksText = kinkSelector.val();
             kinks = inputKinks.parseKinksText(kinksText);
             inputKinks.fillInputList();
         }, 'text');
+    }
 
-    }); 
-    
+    $("#listType").change(updateKinkList);
+
     inputKinks = {
         $columns: [],
         createCategory: function(name, fields){
@@ -532,22 +534,29 @@ $(function(){
             });
             return inputKinks.encode(Object.keys(colors).length, hashValues);
         },
-        parseHash: function(){
+        applySaveToList: function (values) {
+            let valueIndex = 0;
+            $('#InputList .choices').each(function(){
+                let value = values[valueIndex++];
+                $(this).children().eq(value).addClass('selected');
+            });
+        }, parseHash: function(){
             var hash = location.hash.substring(1);
             if(hash.length < 10) return;
 
             var values = inputKinks.decode(Object.keys(colors).length, hash);
-            var valueIndex = 0;
             // select correct kink list
             const kinkListHashOption = kinkSizes[values.length.toString()]
             if (kinkListHashOption !== undefined) {
-                $('#listType')[0].value = kinkListHashOption;
+                let $listType = $('#listType');
+                // This does not trigger the onChange event on #listType, doing it manually
+                $listType.val(kinkListHashOption);
+                updateKinkList().then(function() {
+                    inputKinks.applySaveToList(values);
+                })
+                return
             }
-            $('#InputList .choices').each(function(){
-                var $this = $(this);
-                var value = values[valueIndex++];
-                $this.children().eq(value).addClass('selected');
-            });
+            this.applySaveToList(values);
         },
         saveSelection: function(){
             var selection = [];
